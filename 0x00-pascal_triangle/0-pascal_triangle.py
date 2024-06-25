@@ -1,11 +1,14 @@
-#PASCAL'S TRIANGLE
+#!/usr/bin/python3
 
-# - 1 is always at the top
-# - 1,1 is always on the second row
-# - the next 3 
-
+'''
+Pascal's Triangle
+'''
 
 def pascal_triangle(n):
+    """
+    Creating the triangle
+    """
+
     # If the number of rows is less than 1
     if n <= 0:
         return []
