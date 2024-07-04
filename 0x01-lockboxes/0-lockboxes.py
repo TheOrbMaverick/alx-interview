@@ -1,5 +1,6 @@
+#!/usr/bin/python3
 """
-You have n number of locked boxes in front of you. 
+You have n number of locked boxes in front of you.
 Each box is numbered sequentially from 0 to n - 1
 and each box may contain keys to the other boxes.
 
@@ -14,6 +15,7 @@ The first box boxes[0] is unlocked
 Return True if all boxes can be opened, else return False
 
 """
+
 
 def canUnlockAll(boxes):
     # Total number of boxes
@@ -35,7 +37,7 @@ def canUnlockAll(boxes):
             if key < n and not opened[key]:
                 # Mark the box as opened
                 opened[key] = True
-                 # Add keys from the newly opened box
+                # Add keys from the newly opened box
                 new_keys.extend(boxes[key])
         # Update queue with new keys to process
         queue = new_keys
