@@ -1,5 +1,7 @@
 """
-You have n number of locked boxes in front of you. Each box is numbered sequentially from 0 to n - 1 and each box may contain keys to the other boxes.
+You have n number of locked boxes in front of you. 
+Each box is numbered sequentially from 0 to n - 1
+and each box may contain keys to the other boxes.
 
 Write a method that determines if all the boxes can be opened.
 
@@ -14,10 +16,14 @@ Return True if all boxes can be opened, else return False
 """
 
 def canUnlockAll(boxes):
-    n = len(boxes)  # Total number of boxes
-    opened = [False] * n  # Keep track of which boxes have been opened
-    opened[0] = True  # The first box is always open
-    keys = boxes[0]  # Start with the keys from the first box
+    # Total number of boxes
+    n = len(boxes)
+    # Keep track of which boxes have been opened
+    opened = [False] * n
+    # The first box is always open
+    opened[0] = True
+    # Start with the keys from the first box
+    keys = boxes[0]
 
     # Use a queue to manage keys we have found
     queue = keys
@@ -25,10 +31,14 @@ def canUnlockAll(boxes):
     while queue:
         new_keys = []
         for key in queue:
-            if key < n and not opened[key]:  # If key is valid and the box is not opened
-                opened[key] = True  # Mark the box as opened
-                new_keys.extend(boxes[key])  # Add keys from the newly opened box
-        queue = new_keys  # Update queue with new keys to process
+            # If key is valid and the box is not opened
+            if key < n and not opened[key]:
+                # Mark the box as opened
+                opened[key] = True
+                 # Add keys from the newly opened box
+                new_keys.extend(boxes[key])
+        # Update queue with new keys to process
+        queue = new_keys
 
     # Check if all boxes have been opened
     return all(opened)
