@@ -3,6 +3,7 @@
 Module 0-minoperations
 """
 
+
 def minOperations(n: int) -> int:
     """
     Calculate the fewest number of operations needed to result
