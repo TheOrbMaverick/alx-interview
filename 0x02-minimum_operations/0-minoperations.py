@@ -1,15 +1,22 @@
 #!/usr/bin/python3
 """
-This function counts the number of H in the file.
+Module 0-minoperations
 """
 
-
-def minOperations(n):
+def minOperations(n: int) -> int:
     """
-    Operations to count n number of H in a file
+    Calculate the fewest number of operations needed to result
+    in exactly n 'H' characters in the file.
+
+    Parameters:
+    n (int): The target number of 'H' characters.
+
+    Returns:
+    int: The minimum number of operations needed to reach n 'H' characters.
+         Returns 0 if n is impossible to achieve.
     """
     if n <= 1:
-        return
+        return 0
     operations = 0
     divisor = 2
     while n > 1:
