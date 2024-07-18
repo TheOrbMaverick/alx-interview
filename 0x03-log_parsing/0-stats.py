@@ -31,7 +31,7 @@ if __name__ == "__main__":
             line_count += 1
             try:
                 # Extract and count the status code
-                status_code = int(parts[-2])
+                status_code = parts[-2]
                 if status_code in status_code_counts:
                     status_code_counts[status_code] += 1
             except BaseException:
