@@ -37,7 +37,7 @@ if __name__ == "__main__":
             except BaseException:
                 pass
             try:
-                file_size = int(parts[-1])
+                total_file_size += int(parts[-1])
             except BaseException:
                 pass
 
