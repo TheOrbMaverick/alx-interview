@@ -8,53 +8,45 @@ of each status code after every 10 lines and upon keyboard interruption
 format:
 <IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
 """
-
 import sys
-import signal
-
-# Initialize counters and storage for the metrics
-total_file_size = 0
-status_code_counts = {200: 0, 301: 0, 400: 0, 401: 0,
-                      403: 0, 404: 0, 405: 0, 500: 0}
-line_count = 0
-
-
-def handle_signal(total_file_size, status_code, status_code_counts):
-    """Handles the keyboard interruption (CTRL+C) signal."""
-    print(f"{status_code}: {status_code_counts[status_code]}")
-    print(f"File size: {total_file_size}")
-    sys.exit(0)
 
 
 if __name__ == "__main__":
     """Process the log lines."""
 
-    # Read input from stdin
-    for line in sys.stdin:
-        parts = line.split()
+    # Initialize counters and storage for the metrics
+    total_file_size, line_count = 0, 0
+    status_code_counts = {"200": 0, "301": 0, "400": 0, "401": 0,
+                        "403": 0, "404": 0, "405": 0, "500": 0}
 
-        # Ensure the line has the correct format
-        # if (len(parts) == 9 and parts[5] == '"GET'):
-        try:
-            # Extract and accumulate file size
-            file_size = int(parts[-1])
-            total_file_size += file_size
 
-            # Increment line count
+    def print_stats(status_code_counts: dict, file_size: int) -> None:
+        print("File size: {:d}".format(total_file_size))
+        for key, value in sorted(status_code_counts.items()):
+            if value > 0:
+                print("{}: {}".format(key, value))
+
+    try:
+        for line in sys.stdin:
+            parts = line.split()
             line_count += 1
-
-            # Extract and count the status code
-            status_code = int(parts[-2])
-            if status_code in status_code_counts:
-                status_code_counts[status_code] += 1
-                print(f"{status_code}: {status_code_counts[status_code]}")
+            try:
+                # Extract and count the status code
+                status_code = int(parts[-2])
+                if status_code in status_code_counts:
+                    status_code_counts[status_code] += 1
+            except BaseException:
+                pass
+            try:
+                file_size = int(parts[-1])
+            except BaseException:
+                pass
 
             if line_count % 10 == 0:
-                print(f"File size: {total_file_size}")
+                print_stats(status_code_counts, total_file_size)
+        print_stats(status_code_counts, total_file_size)
 
-        except ValueError:
-            # Skip lines with invalid integers for file size or status code
-            continue
-
-    # Set up the signal handler for keyboard interruption
-    signal.signal(signal.SIGINT, handle_signal(total_file_size, status_code, status_code_counts))
+    except KeyboardInterrupt:
+        # Print the last lines
+        print_stats(status_code_counts, total_file_size)
+        raise
