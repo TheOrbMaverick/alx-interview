@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This script reads from stdin line by line, processes each line to extract
 file size and status code if the line matches the expected format, and
