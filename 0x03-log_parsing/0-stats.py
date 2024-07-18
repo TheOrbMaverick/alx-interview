@@ -17,8 +17,7 @@ if __name__ == "__main__":
     # Initialize counters and storage for the metrics
     total_file_size, line_count = 0, 0
     status_code_counts = {"200": 0, "301": 0, "400": 0, "401": 0,
-                        "403": 0, "404": 0, "405": 0, "500": 0}
-
+                          "403": 0, "404": 0, "405": 0, "500": 0}
 
     def print_stats(status_code_counts: dict, file_size: int) -> None:
         print("File size: {:d}".format(total_file_size))
