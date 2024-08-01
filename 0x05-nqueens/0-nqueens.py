@@ -38,7 +38,7 @@ def solve_queens(N):
 
 
 def main():
-    if (sys.argv) != 2:
+    if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
 
