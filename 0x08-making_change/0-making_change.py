@@ -3,10 +3,11 @@
 Determine the fewest amount of coins required
 """
 
+
 def makeChange(coins, total):
     if (total <= 0):
         return 0
-    
+
     # List of min coins required
     dp = [float('inf')] * (total + 1)
     # Base case: 0 coins needed to meet a total of 0
