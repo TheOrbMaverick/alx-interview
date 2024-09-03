@@ -25,8 +25,8 @@ def isWinner(x, nums):
         prime_count[i] = prime_count[i - 1] + (1 if primes[i] else 0)
 
     # Determine the winner for each round
-    maria = 0
-    ben = 0
+    maria_wins = 0
+    ben_wins = 0
     for n in nums:
         if prime_count[n] % 2 == 1:  # Maria wins if odd
             maria_wins += 1
