@@ -3,10 +3,11 @@
 The game of primes
 """
 
+
 def isWinner(x, nums):
     if x <= 0 or not nums:
         return
-    
+
     # Find maximum n from nums to limit the sieve
     max_n = max(nums)
 
@@ -27,9 +28,9 @@ def isWinner(x, nums):
     maria = 0
     ben = 0
     for n in nums:
-        if prime_count[n] % 2 == 1:  # Maria wins if the number of primes up to n is odd
+        if prime_count[n] % 2 == 1:  # Maria wins if odd
             maria_wins += 1
-        else:  # Ben wins if the number of primes up to n is even
+        else:  # Ben wins if even
             ben_wins += 1
 
     # Determine the overall winner
