@@ -5,6 +5,10 @@ This is the prime game
 
 
 def isWinner(x, nums):
+    """
+    Determins who the winner of the prime game is by
+    who picks the most prime numbers
+    """
     if x <= 0 or not nums:
         return None
 
